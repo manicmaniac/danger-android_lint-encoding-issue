@@ -1,5 +1,5 @@
 name: Lint
-on: push
+on: pull_request
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -9,4 +9,8 @@ jobs:
         with:
           ruby-version: 3.2
           bundler-cache: true
-      - run: bundle exec danger
+      - run: ruby -e 'p Encoding.default_external'
+      - run: ruby -e 'p Encoding.default_internal'
+      - run: LANG=en_US.US-ASCII LC_ALL=C bundle exec danger
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
