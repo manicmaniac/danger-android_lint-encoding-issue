@@ -11,6 +11,6 @@ jobs:
           bundler-cache: true
       - run: ruby -e 'p Encoding.default_external'
       - run: ruby -e 'p Encoding.default_internal'
-      - run: LC_ALL=C bundle exec danger
+      - run: LANG=en_US.US-ASCII LC_ALL=C bundle exec danger
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
